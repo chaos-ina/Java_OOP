@@ -4,20 +4,6 @@
         {
             "label": "Java: Compile and Run (Package)",
             "type": "shell",
-            "command": "powershell.exe",
-            "args": [
-                "-ExecutionPolicy",
-                "Bypass",
-                "-File",
-                "${workspaceFolder}\\.vscode\\build-and-run.ps1",
-                "-relativeDir",
-                "${relativeFileDirname}",
-                "-fileBaseName",
-                "${fileBasenameNoExtension}"
-            ],
-            "options": {
-                "cwd": "${workspaceFolder}"
-            },
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -29,7 +15,43 @@
             },
             "problemMatcher": [
                 "$javac"
-            ]
+            ],
+            "windows": {
+                "command": "powershell.exe",
+                "args": [
+                    "-ExecutionPolicy",
+                    "Bypass",
+                    "-File",
+                    "${workspaceFolder}\\.vscode\\build-and-run.ps1",
+                    "-relativeDir",
+                    "${relativeFileDirname}",
+                    "-fileBaseName",
+                    "${fileBasenameNoExtension}"
+                ],
+                "options": {
+                    "cwd": "${workspaceFolder}"
+                }
+            },
+            "osx": {
+                "command": "${workspaceFolder}/.vscode/build-and-run.sh",
+                "args": [
+                    "${relativeFileDirname}",
+                    "${fileBasenameNoExtension}"
+                ],
+                "options": {
+                    "cwd": "${workspaceFolder}"
+                }
+            },
+            "linux": {
+                "command": "${workspaceFolder}/.vscode/build-and-run.sh",
+                "args": [
+                    "${relativeFileDirname}",
+                    "${fileBasenameNoExtension}"
+                ],
+                "options": {
+                    "cwd": "${workspaceFolder}"
+                }
+            }
         }
     ]
 }
